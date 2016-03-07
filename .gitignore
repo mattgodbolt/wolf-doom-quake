@@ -1,0 +1,11 @@
+*.swp
+.*#
+memory
+pcp
+core
+ifetch
+cachecontention
+falsesharing
+!presentation.pdf
+presentation.*
+out/
