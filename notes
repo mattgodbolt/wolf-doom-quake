@@ -1,0 +1,74 @@
+* Wolf3d
+  * Ray casting
+    * like ray tracing, but one ray per pixel column
+  * map stored as an array of 64*64 tiles
+  * basic overview of process
+  * fisheye
+  * now practicalities of doing it on 286
+    * 16-bit integer math only, no divides.
+
+
+finetangents=tan(X) and 1/tan(X) backwards from FINEANGLES/8
+   the 1/tan(X) used for 'opposite side' step
+spotvis = is this place visible from plyer?
+self modifying code (search cs: in WL_DR_A.ASM)
+
+--process
+determine quadrant
+initialize xtilestep and ytilestep (+/-1 trivially from quadrant)
+initialize xstep and ystep
+  compute via tan(X) and 1/tan(X) as appropriate
+  again from quadrant and +/i lookuptable and 1/lookup
+read xpartialup and ypartialdown into xpartial and ypartial?
+  *partial is "how far is it to the next unit" line, accounting for direction
+patch code in hot loop for jge/jle based on xtilestep and ytilestep
+
+initvars:
+yintercept = xpartialbyystep() + viewy // ystep * xpartial (a fraction, 0.0 - 0.999 between tile)
+xtile = focaltx + xtilestep
+xspot = (xtile << 6) + yinttile [top bits of yintercept] ; left in si
+xintercept = ypartialbyxstep() + viewx
+(cx = top bits of x intercept)
+ytile = focalty+ytilestep
+yspot = (xinttile<<6) + ytile
+CORE LOOP!
+; AX : scratch
+; BX : xtile
+; CX : high word of xintercept (aka xinttile)
+; DX : high word of yintercept (aka yinttile)
+; SI : xspot (yinttile<<6)+xtile (index into tilemap and spotvis)
+; DI : yspot (xinttile<<6)+ytile (index into tilemap and spotvis)
+; BP : ytile
+; ES : screenseg
+
+vert:
+if (high(yintercept) <= ytile) goto horiz;
+if (tilemap[xspot]) goto hitvert;
+mark this spot visible
+xtile += xtilestep
+yintercept += ystep
+xspot = (xtile<<6)+yinttline
+goto vert;
+hitvert:
+tilehit = tilemap[xpot]
+handle door vs not door...
+call HitVertWall if wall
+else...special dor handling 
+
+horiz:
+if (high(xintercept) <= xtile) goto vert;
+as above, but s/x/y
+
+[TODO] then HitHorizWall etc
+  -> checks 'texture' (seemingly the U coord) and optimizes (maybe incorrect?) after calling CalcHeight() U coord = (intercept>>4) & 0xfc0
+ScalePost draws 1, 2 and 3 byte "strips". VGA masks let us write to 4 planes at once. Tables sort out which bytes get written to which planes.
+height shared amongst several pixels; bespoke scalers built. walls all 64-pixels high
+
+CalcHeight:
+  gxt = viewcos * (xintercept - viewx)
+  gyt = viewsin * (yintercept - viewy)
+  nx = max(mindist, gxt-gyt)
+  return heightnumerator / nx;
+
+implies xintercept/yintercept are the location of the hit  
+
