@@ -135,14 +135,64 @@
                         </g>
                     </g>
                     <g class="fragment">
-                        <line x1="1.25" y1="3.60" x2="3.709" y2="1.00" stroke="#fff" stroke-width="0.02"
-                              marker-end="url(#marker-hit)"></line>
+                        <g class="fragment fade-out">
+                            <line x1="1.25" y1="3.60" x2="3.709" y2="1.00" stroke="#fff" stroke-width="0.02"
+                                  marker-end="url(#marker-hit)"></line>
+                        </g>
                     </g>
                     <g class="fragment">
+                        <rect x="1" y="3" width="1" height="1" fill="#666" opacity="0.2"></rect>
+                        <line class="current-visible" x1="1.25" y1="3.60" x2="1.80" y2="3.00" stroke="#fff"
+                              stroke-width="0.02" marker-end="url(#ecks)"></line>
+                    </g>
+                    <g class="fragment">
+                        <rect x="1" y="2" width="1" height="1" fill="#666" opacity="0.2"></rect>
+                        <line x1="1.25" y1="3.60" x2="2" y2="2.80" stroke="#fff"
+                              stroke-width="0.02" marker-end="url(#ecks)"></line>
+                    </g>
+                    <g class="fragment">
+                        <rect x="2" y="2" width="1" height="1" fill="#666" opacity="0.2"></rect>
+                        <line x1="1.25" y1="3.60" x2="2.75" y2="2.00" stroke="#fff"
+                              stroke-width="0.02" marker-end="url(#ecks)"></line>
+                    </g>
+                    <g class="fragment">
+                        <rect x="2" y="1" width="1" height="1" fill="#666" opacity="0.2"></rect>
+                        <line x1="1.25" y1="3.60" x2="3.00" y2="1.75" stroke="#fff"
+                              stroke-width="0.02" marker-end="url(#ecks)"></line>
+                    </g>
+                    <g class="fragment">
+                        <rect x="3" y="1" width="1" height="1" fill="#666" opacity="0.2"></rect>
+                        <line x1="1.25" y1="3.60" x2="3.709" y2="1.0" stroke="#fff"
+                              stroke-width="0.02" marker-end="url(#ecks)"></line>
+                    </g>
+                    <g class="fragment current-visible">
+                        <line x1="1.25" y1="3.60" x2="3.709" y2="1.00" stroke="#fff" stroke-width="0.02"></line>
                         <line x1="-0.041" y1="-8.380" x2="7.459" y2="10.380" stroke="#fff" stroke-width="0.02"></line>
                         <line x1="1.25" y1="3.60" x2="4.252" y2="2.40" stroke="#fff" stroke-width="0.02"
                               marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
                         <text x="2.8" y="3.2" fill="white" font-size="0.25">d</text>
+                    </g>
+                    <g class="fragment current-visible">
+                        <line x1="1.80" y1="0" x2="1.80" y2="5" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="2.75" y1="0" x2="2.75" y2="5" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="3.70" y1="0" x2="3.70" y2="5" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="1.80" y1="4.70" x2="2.75" y2="4.70" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="2.325" y="4.50" text-anchor="middle" fill="white" font-size="0.2">&delta;y</text>
+                        <line x1="2.75" y1="4.70" x2="3.70" y2="4.70" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="3.225" y="4.50" text-anchor="middle" fill="white" font-size="0.2">&delta;y</text>
+                    </g>
+                    <g class="fragment">
+                        <line x1="0" y1="2.8" x2="5" y2="2.8" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="0" y1="1.75" x2="5" y2="1.75" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="0" y1="0.70" x2="5" y2="0.70" stroke="#ff0" stroke-width="0.02"></line>
+                        <line x1="0.30" y1="2.8" x2="0.30" y2="1.75" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="0.4" y="2.35" text-anchor="start" fill="white" font-size="0.2">&delta;x</text>
+                        <line x1="0.30" y1="1.75" x2="0.30" y2="0.7" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="0.4" y="1.3" text-anchor="start" fill="white" font-size="0.2">&delta;x</text>
                     </g>
                 </g>
                 <rect width="100%" height="100%" fill="url(#grid)"></rect>
@@ -151,7 +201,38 @@
 
         <section>
             <h2>Math #1</h2>
-
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(37.5 37.5)">
+                    <g transform="scale(300 300)">
+                        <text x="0.00" y="1.08" text-anchor="middle" fill="white" font-size="0.06">x</text>
+                        <text x="1.00" y="1.08" text-anchor="middle" fill="white" font-size="0.06">x+1</text>
+                        <text x="-0.03" y="1.00" text-anchor="end" fill="white" font-size="0.06">y+1</text>
+                        <text x="-0.03" y="0.00" text-anchor="end" fill="white" font-size="0.06">y</text>
+                        <circle cx="0.25" cy="0.60" r="0.01" fill="#fff"></circle>
+                        <line x1="0.25" y1="0.60" x2="1.035" y2="0.448" stroke="#f33" stroke-width="0.005"
+                              marker-end="url(#arrow)"></line>
+                        <g class="fragment fade-out">
+                            <line x1="0.0" y1="0.60" x2="0.25" y2="0.60" stroke="#fff" stroke-width="0.005"
+                                  marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                            <text x="0.125" y="0.675" text-anchor="middle" fill="white" font-size="0.06">dx</text>
+                            <line x1="0.25" y1="0.00" x2="0.25" y2="0.60" stroke="#fff" stroke-width="0.005"
+                                  marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                            <text x="0.20" y="0.30" text-anchor="end" fill="white" font-size="0.06">dy</text>
+                        </g>
+                        <g class="fragment">
+                            <line x1="0.25" y1="0.60" x2="1.0" y2="0.60" stroke="#fff" stroke-width="0.005"
+                                  marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                            <text x="0.625" y="0.675" text-anchor="middle" fill="white" font-size="0.06">1 - dx</text>
+                            <line x1="1.00" y1="0.455" x2="1.00" y2="0.60" stroke="#fff" stroke-width="0.005"
+                                  marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                            <text x="1.02" y="0.53" text-anchor="start" fill="white" font-size="0.06">xi</text>
+                        </g>
+                    </g>
+                </g>
+                <rect x="37.5" y="37.5" width="300" height="300" stroke="gray" fill="none"></rect>
+            </svg>
+            Whoops, need to use correct ray from before.
+            also maybe show high-level overview of bresenhammy thing
         </section>
     </div>
 
