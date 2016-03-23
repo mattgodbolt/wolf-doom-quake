@@ -345,14 +345,17 @@
         </section>
         <section>
             <h2>For each ray: trace</h2>
-            <ul>
-                <li>while <code>map</code>[<code>x</code>][<code>y</code>] is empty, do either:
-                    <ul>
-                        <li><code>x</code> += <code>tileStepX</code>; <code>yIntercept</code> += <code>yStep</code></li>
-                        <li><code>y</code> += <code>tileStepX</code>; <code>xIntercept</code> += <code>xStep</code></li>
-                    </ul>
-                </li>
-            </ul>
+            <pre><code data-trim class="c">
+while (map[x][y] == 0) {
+  if (yIntercept > y) {
+    x += tileStepX;
+    yIntercept += yStep;
+  } else {
+    y += tileStepY;
+    xIntercept += xStep;
+  }
+}
+            </code></pre>
         </section>
         <section>
             <h2>Distance</h2>
