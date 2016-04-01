@@ -72,3 +72,55 @@ CalcHeight:
 
 implies xintercept/yintercept are the location of the hit  
 
+d' = sqrt(dx*dx+dy*dy)
+d = d' cos (hitAngle - theta)
+
+a'd cos x-y = d' ( cosxcosy + sinx siny )
+        = d' ( cos(hitAngle) * cos(theta)
+               + sin(hitAngle) * sin(theta) )
+        = d' cos(HitAngle) * cos(theta)
+               + d sin(hitAngle) * sin(theta)
+
+dx = d' cos hitAngle
+dy = d' sin hitAngle
+
+        = dx * cos(theta) + dy * sin(theta)
+
+EXCEPT IT'S BLOODY minus in the wofl code
+
+Needs to be drawn out with full theta to e certain. Suspect it's a thingy where y is upside down or something
+
+ahh... viewx = player->x - focal * cos
+       viewy = player->x + focal * sin (wtf!)
+       -> implies "sin" is "wrong sign" (or cos)
+       --> means dy * sin(theta) should be -dy * sin(theta)
+
+OK 0 is [-1,0], 45deg is [-0.7, 0.7] etc:
+viewx/viewy is actually player MINUS a short distance...
+
+so...for projectiles etc moving "forward"
+-- 0 is [1,0], 45 deg is [0.7, -0.7] so anticlockwise
+
+.....
+
+with Z = ???
+    p = d sin (Z - theta)
+    sin(a-b) = sin(a)cos(b) - cos(a)sin(b)
+    p = d [ sin(Z)cos(theta) - cos(Z)sin(theta) ]
+
+    now to prove d sin(Z) = dx
+                 d cos(Z) = dy ?
+                 and to work out what Z is??!
+
+alternatively
+   p = d cos (L + theta)
+   p = d [ cos(L)cos(theta) - sin(L)sin(theta) ]
+   then to prove
+            d cos(L) = dx
+            d sin(L) = dy
+
+---------
+
+all nonsense!! :)
+
+dy is "upside down". I've been drawing dy as being from bottom to top; but of course it's the other way around!!! that means dy above should be -dy! HOORAY

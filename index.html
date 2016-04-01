@@ -144,7 +144,7 @@
                         <line x1="-0.041" y1="-8.380" x2="7.459" y2="10.380" stroke="#fff" stroke-width="0.02"></line>
                         <line x1="1.25" y1="3.60" x2="4.252" y2="2.40" stroke="#fff" stroke-width="0.02"
                               marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
-                        <text x="2.8" y="3.2" fill="white" font-size="0.25">d</text>
+                        <text x="2.8" y="3.2" fill="white" font-size="0.25">p</text>
                     </g>
                     <g class="fragment"><!-- here as a break --></g>
                     <!-- line intersections -->
@@ -362,6 +362,7 @@ for (;;) {
             </code></pre>
         </section>
         <section>
+            <section>
             <h2>Distance</h2>
             <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
                 <g transform="scale(75 75)">
@@ -384,15 +385,65 @@ for (;;) {
                               marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
                     </g>
                     <g class="fragment current-visible">
-                        <text x="2.8" y="3.2" fill="white" font-size="0.25">d ?</text>
-                        <text x="3.8" y="0.75" fill="white" font-size="0.25">xInt, yInt</text>
+                        <text x="2.8" y="3.2" fill="white" font-size="0.25">p</text>
+                        <!--<text x="3.8" y="0.75" fill="white" font-size="0.25">xInt, yInt</text>-->
+                    </g>
+                    <g class="fragment current-visible">
+                        <path d="M1.25 3.60 L4.252 2.40 L3.709 1 z" fill="#8ff" fill-opacity="0.5"></path>
+                        <path d="M1.946 3.322 A 1.25 1.25 1 0 0 1.765 3.055" fill="none" stroke="#8ff"
+                              stroke-width="0.02"></path>
+                        <text x="1.9" y="3.15" fill="white" font-size="0.25">&phi;</text>
+                        <text x="2.8" y="3.2" fill="white" font-size="0.25">p = d cos(&phi;)</text>
+                        <text x="2.5" y="2.0" fill="white" font-size="0.25">d</text>
+                    </g>
+                    <g class="fragment current-visible">
+                        <path d="M2.0 3.60 A 0.75 0.75 1 0 0 1.946 3.322 M 1.25 3.60 L5 3.60"
+                              fill="none" stroke="#ff8" stroke-width="0.02"></path>
+                        <text x="2.2" y="3.5" fill="white" font-size="0.25">&beta;</text>
                     </g>
                     <g class="fragment">
-                        <path d="M1.25 3.60 L3.709 3.6 L3.709 1" fill="none" stroke="#fff" stroke-width="0.02"></path>
+                        <line x1="1.25" y1="3.60" x2="3.709" y2="3.60" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="2.48" y="3.9" fill="white" font-size="0.25">&Delta;x</text>
+                        <line x1="3.709" y1="3.60" x2="3.709" y2="1.0" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                        <text x="3.8" y="2.3" fill="white" font-size="0.25">&Delta;y</text>
+                        <path d="M2.50 3.60 A 1.25 1.25 1 0 0 2.109 2.692"
+                              fill="none" stroke="#fff" stroke-width="0.02"></path>
+                        <text x="2.4" y="2.9" fill="white" font-size="0.25">&theta;</text>
+                        <text x="2.5" y="2.0" fill="white" font-size="0.25">d</text>
+                    </g>
+                    <g class="fragment">
+                        <path d="M1.946 3.322 A 1.25 1.25 1 0 0 1.765 3.055" fill="none" stroke="#8ff"
+                              stroke-width="0.02"></path>
+                        <text x="1.9" y="3.15" fill="white" font-size="0.25">&phi;</text>
+                        <path d="M2.0 3.60 A 0.75 0.75 1 0 0 1.946 3.322" fill="none" stroke="#ff8"
+                              stroke-width="0.02"></path>
+                        <text x="2.2" y="3.5" fill="white" font-size="0.25">&beta;</text>
+                        <text x="2.8" y="3.2" fill="white" font-size="0.25">p</text>
                     </g>
                 </g>
                 <rect width="100%" height="100%" fill="url(#grid)"></rect>
             </svg>
+            <ul>
+                <li class="fragment">p = d cos(&phi;)</li>
+                <li class="fragment">&phi; = &theta; - &beta;</li>
+                <li class="fragment">p = d cos(&theta; - &beta;)</li>
+            </ul>
+            </section>
+            <section>
+                <h2>Math #3</h2>
+                <ul>
+                    <li>p = d cos(&phi;)</li>
+                    <li>&phi; = &theta; - &beta;</li>
+                    <li>p = d cos(&theta; - &beta;)</li>
+                    <li class="fragment">cos(A - B) &equiv; cos(A) cos(B) + sin(A) sin(B)</li>
+                    <li class="fragment">p = d (cos(&theta;) cos(&beta;) + sin(&theta;) sin(&beta;))</li>
+                    <li class="fragment">p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</li>
+                    <li class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</li>
+                    <li class="fragment">p = &Delta;x cos(&beta;) + &Delta;y sin(&beta;)</li>
+                </ul>
+            </section>
         </section>
         <section>
             <h2>Scaling</h2>
