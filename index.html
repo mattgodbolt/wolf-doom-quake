@@ -362,7 +362,6 @@ for (;;) {
             </code></pre>
         </section>
         <section>
-            <section>
             <h2>Distance</h2>
             <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
                 <g transform="scale(75 75)">
@@ -430,25 +429,77 @@ for (;;) {
                 <li class="fragment">&phi; = &theta; - &beta;</li>
                 <li class="fragment">p = d cos(&theta; - &beta;)</li>
             </ul>
-            </section>
-            <section>
-                <h2>Math #3</h2>
-                <ul>
-                    <li>p = d cos(&phi;)</li>
-                    <li>&phi; = &theta; - &beta;</li>
-                    <li>p = d cos(&theta; - &beta;)</li>
-                    <li class="fragment">cos(A - B) &equiv; cos(A) cos(B) + sin(A) sin(B)</li>
-                    <li class="fragment">p = d (cos(&theta;) cos(&beta;) + sin(&theta;) sin(&beta;))</li>
-                    <li class="fragment">p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</li>
-                    <li class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</li>
-                    <li class="fragment">p = &Delta;x cos(&beta;) + &Delta;y sin(&beta;)</li>
-                </ul>
-            </section>
+        </section>
+        <section>
+            <h2>Math #3</h2>
+            <div>p = d cos(&phi;)</div>
+            <div>&phi; = &theta; - &beta;</div>
+            <div>p = d cos(&theta; - &beta;)</div>
+            <div class="fragment">cos(A - B) &equiv; cos(A) cos(B) + sin(A) sin(B)</div>
+            <div class="fragment">p = d [ cos(&theta;) cos(&beta;) + sin(&theta;) sin(&beta;) ]</div>
+            <div class="fragment">p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</div>
+            <div class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</div>
+            <div class="fragment" style="border: 2px solid white; padding: 2px; margin-top: 20px;">p = &Delta;x cos(&beta;)
+                + &Delta;y sin(&beta;)</div>
+        </section>
+        <section>
+            <h2>Distance</h2>
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g transform="scale(75 75)">
+                    <rect x="0" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="1" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="2" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="3" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="1" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="2" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="3" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="4" width="1" height="1" fill="#336"></rect>
+                    <g>
+                        <circle cx="1.25" cy="3.60" r="0.04" fill="#fff"></circle>
+                        <line x1="1.25" y1="3.60" x2="2.188" y2="3.225" stroke="#f33" stroke-width="0.02"
+                              marker-end="url(#arrow)"></line>
+                        <line x1="1.25" y1="3.60" x2="3.709" y2="1.00" stroke="#fff" stroke-width="0.02"></line>
+                        <line x1="-0.041" y1="-8.380" x2="7.459" y2="10.380" stroke="#fff" stroke-width="0.02"></line>
+                        <line x1="1.25" y1="3.60" x2="4.252" y2="2.40" stroke="#fff" stroke-width="0.02"
+                              marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                    </g>
+                    <line x1="1.25" y1="3.60" x2="3.709" y2="3.60" stroke="#fff" stroke-width="0.02"
+                          marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                    <text x="2.48" y="3.9" fill="white" font-size="0.25">&Delta;x</text>
+                    <line x1="3.709" y1="3.60" x2="3.709" y2="1.0" stroke="#fff" stroke-width="0.02"
+                          marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                    <text x="3.8" y="2.3" fill="white" font-size="0.25">&Delta;y</text>
+                    <path d="M1.946 3.322 A 1.25 1.25 1 0 0 1.765 3.055" fill="none" stroke="#8ff"
+                          stroke-width="0.02"></path>
+                    <text x="1.9" y="3.15" fill="white" font-size="0.25">&phi;</text>
+                    <path d="M2.0 3.60 A 0.75 0.75 1 0 0 1.946 3.322" fill="none" stroke="#ff8"
+                          stroke-width="0.02"></path>
+                    <text x="2.2" y="3.5" fill="white" font-size="0.25">&beta;</text>
+                    <text x="2.8" y="3.2" fill="white" font-size="0.25">p</text>
+                </g>
+                <rect width="100%" height="100%" fill="url(#grid)"></rect>
+            </svg>
+            <div style="border: 2px solid white; padding: 2px; margin-top: 20px;">p = &Delta;x cos(&beta;)
+                + &Delta;y sin(&beta;)</div>
         </section>
         <section>
             <h2>Scaling</h2>
+            <ul>
+                <li>Wall height = constant / p</li>
+                <li>Pre-create scale function per possible height</li>
+                <li>(Ab)use VGA memory planes</li>
+            </ul>
         </section>
-
+        <section>
+            <h2>Sprites</h2>
+            <ul>
+                <li>Distance calculated similarly to hits</li>
+                <li>Drawn back-to-front</li>
+                <li>Scaled similarly to walls</li>
+                <li>Each column compared to nearest</li>
+            </ul>
+        </section>
     </div>
 
 </div>
