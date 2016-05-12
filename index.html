@@ -44,6 +44,9 @@
             <pattern id="grid" width="75" height="75" patternUnits="userSpaceOnUse">
                 <path d="M 75 0 L 0 0 0 75" fill="none" stroke="gray" stroke-width="1"></path>
             </pattern>
+            <pattern id="grid-sm" width="37.5" height="37.5" patternUnits="userSpaceOnUse">
+                <path d="M 37.5 0 L 0 0 0 37.5" fill="none" stroke="gray" stroke-width="1"></path>
+            </pattern>
             <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto"
                     markerUnits="strokeWidth">
                 <path d="M0 0 L0 6 L9 3 z" fill="#f33"></path>
@@ -80,7 +83,7 @@
 
         <section>
             <h2>Wolfenstein 3D</h2>
-            <img src="Wolf3d_pc.png" height="200" width="320">
+            <img class="stretch" src="Wolf3d_pc.png" height="200" width="320">
         </section>
 
         <section>
@@ -94,22 +97,37 @@
 
         <section>
             <h2>Raycasting</h2>
-            Describe briefly the whole thing
-            not real 3d
+        </section>
+
+        <section>
+            <h2>Wolf3D's raycaster</h2>
+            <ul>
+                <li>Flat plane</li>
+                <li>Square grid only</li>
+                <li>Untextured floor and ceiling</li>
+            </ul>
         </section>
 
         <section>
             <h2>Map</h2>
-            <pre style="text-align: center; font-size: larger;">
-********
-*    | *
-**-*** *
-*    * *
-******-*
-*      *
-*      *
-********
-            </pre>
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g transform="scale(37.5 37.5)">
+                    <rect x="0" y="0" width="10" height="1" fill="#336"></rect>
+                    <rect x="0" y="0" width="1" height="10" fill="#336"></rect>
+                    <rect x="0" y="9" width="10" height="1" fill="#336"></rect>
+                    <rect x="9" y="0" width="1" height="10" fill="#336"></rect>
+
+                    <rect x="0" y="3" width="3" height="1" fill="#336"></rect>
+                    <rect x="3" y="3" width="1" height="1" fill="#636"></rect>
+                    <rect x="4" y="1" width="1" height="5" fill="#336"></rect>
+                    <rect x="1" y="5" width="1" height="1" fill="#636"></rect>
+                    <rect x="2" y="5" width="2" height="1" fill="#336"></rect>
+
+                    <rect x="4" y="6" width="4" height="1" fill="#336"></rect>
+                    <rect x="8" y="6" width="1" height="1" fill="#636"></rect>
+                </g>
+                <rect width="100%" height="100%" fill="url(#grid-sm)"></rect>
+            </svg>
         </section>
 
         <section>
@@ -257,7 +275,7 @@
             <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(0 5)">
                     <g transform="scale(180 180)">
-                        <path d="M0.1 0.9 L 0.9 0.9 L0.9 0.1 L 0.1 0.9 x" stroke="#fff" stroke-width="0.01"
+                        <path d="M0.1 0.9 L0.9 0.9 L0.9 0.1 L0.1 0.9" stroke="#fff" stroke-width="0.01"
                               fill="#00f"></path>
                         <text x="0.5" y="1.01" fill="white" font-size="0.11" text-anchor="middle">-dy / tan(&theta;)
                         </text>
@@ -440,7 +458,8 @@ for (;;) {
             <div class="fragment">p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</div>
             <div class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</div>
             <div class="fragment" style="border: 2px solid white; padding: 2px; margin-top: 20px;">p = &Delta;x cos(&beta;)
-                + &Delta;y sin(&beta;)</div>
+                + &Delta;y sin(&beta;)
+            </div>
         </section>
         <section>
             <h2>Distance</h2>
@@ -481,7 +500,8 @@ for (;;) {
                 <rect width="100%" height="100%" fill="url(#grid)"></rect>
             </svg>
             <div style="border: 2px solid white; padding: 2px; margin-top: 20px;">p = &Delta;x cos(&beta;)
-                + &Delta;y sin(&beta;)</div>
+                + &Delta;y sin(&beta;)
+            </div>
         </section>
         <section>
             <h2>Scaling</h2>
@@ -494,12 +514,77 @@ for (;;) {
         <section>
             <h2>Sprites</h2>
             <ul>
-                <li>Distance calculated similarly to hits</li>
+                <li>Distance calculated similarly to walls</li>
                 <li>Drawn back-to-front</li>
                 <li>Scaled similarly to walls</li>
                 <li>Each column compared to nearest</li>
                 <li>Sprites "compiled" into runs of opaque pixels</li>
             </ul>
+        </section>
+
+        <section><h3>Questions?</h3>
+            <h4><a href="http://wolf3d.atw.hu/">Obligatory Javascript link</a></h4></section>
+
+        <section>
+            <h2>Doom</h2>
+            <img src="Doom_ingame_1.png" height="240" width="320">
+        </section>
+
+        <section>
+            <h2>Technology</h2>
+            TODO: specs of tech
+        </section>
+
+        <section>
+            <h2>Raycasting</h2>
+            <ul>
+                <li>But better!</li>
+                <li class="fragment">Arbitrary walls</li>
+                <li class="fragment">Wall/ceiling height changes</li>
+                <li class="fragment">Textured floors/ceilings</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Maps</h2>
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="
+                    M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
+                    L363 173 L307 322 L180 303 L231 230 L136 179 L90 204
+                    L132 261 L81 303 L14 247 L59 29" fill="none" stroke="#8ff"
+                          stroke-width="1.5"></path>
+                    <path class="fragment" d="
+                    M186 163 L166 196
+                    M209 174 L189 206
+                    M232 186 L212 218" fill="none" stroke="#f88"
+                          stroke-width="1.5"></path>
+                    <g class="fragment">
+                        <path d="
+                        M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
+                        L363 173 L307 322 L180 303 L231 230 L136 179 L90 204"
+                              fill="#488" opacity="0.3"></path>
+                    </g>
+                </g>
+                <rect width="100%" height="100%" fill="url(#grid)"></rect>
+            </svg>
+        </section>
+        <section>
+            <h2>Definitions</h2>
+            Linedefs
+            Sidedefs
+            Areas?
+        </section>
+
+        <section>
+            <h2>BSP</h2>
+        </section>
+
+        <section>
+            <h2>Rendering</h2>
+            ray cast to find walls
+            floors
+            sprites
         </section>
     </div>
 

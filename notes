@@ -1,3 +1,76 @@
+----------------------------------------------------------
+Doom!
+
+Start at top of BSP, traverse in nearest-first order (always to end)
+  - draw things in BSP node, (subsector: optional)
+  - traverse "front" (side the camera is on)
+  - maybe traverse "back" (if bbox visible)
+
+Drawing a subsector:
+  - determine floor and ceiling height , set planes up (these will be added to during draw seg)
+  - add all sprites inside this subsector
+  - for each line, R_AddLine
+ 
+Drawing a line:
+  - seems to use angles? hmm (divide and tan-table lookup per pt)
+    - clipangle = half fieldofview angle
+      - TODO: work out what all the tspan stuff is doing
+    - Backface cull, clip left and right edge
+  - determine x range on screen (discard if small)
+    - uses tables to map view-relative angles to x positions
+  - either clip wall segment (for steps/ceiling) or clip solid (for end walls)
+
+ClipSolid:
+  - keeps track of "solidsegs": linked list of solid areas, initialised to
+      <---]   [---> solid either side of screen.
+  - no need to track "Z"; if something is "solid" we saw it in nearest-to-camera-first
+    order thanks to BSP traversal
+  - clips [left, right] against solid areas, updates and inserts solid blocks, and calls
+    R_StoreWallRange to note what to draw.
+
+Clip_not_solid: TODO
+
+R_StoreWallRange:
+  - lots of state in "curline" global...
+  - ds_p is freshly allocated drawseg
+  - calculates rw_distance:
+    - calculates "hyp" - dist to first point from viewpoint (via r_PointToDist())
+    - distangle = 90 - abs(curline->angle + 90 - rw_angle1)  (TODO: draw and work out)
+      - rw_angle1 is the angle to the first point from view as latched in R_DrawLine
+    - rw_distance = hyp * sin(distangle)
+    - seems to be "parallel distance to line" but needs geometry check
+  - calcs scale1 (rw_scale) as R_ScaleFromGlobalAngle(viewAng + xToView[start])
+    - that is, get the actual angle to the clipped start position
+    - R_ScaleFromGA returns "texture mapping scale for current line" at the given angle
+      - TODO: work out geometry here (r_main.c)
+  - calcs scale2 similarly (for end)
+  - works out "top" and "bottom" - sector's ceiling and floor adjusted for view height
+  - for single-sided lines (i.e. fully opaque walls):
+    - fills in various flags, sprite clip arrays, bsilheight and tsilheight
+  - for double-sided lines
+    - LOTS of code. TODO
+  - if needs texturing
+    - rw_offset = hyp * sin(rw_normalangle-rw+angle1)
+    - rw_offset += side->textofset + curline->offset
+    - some lighting simple calc (walllights = something)
+  - init topstep/topfrac & bottomstep/bottomfrac:
+    - rw_scalestep * world{top,bottom} ; centrerfrac - world{top, bottom} * rw_scale
+  - set ceiling & floor planes with R_CheckPlane
+  - call R_RenderSegLoop()
+  - save some silhouette info for sprites
+
+ R_RenderSegLoop:
+  - ends up calling colfunc() which is dynamically R_DrawColumn or R_DrawColumnLow (vs detailshift - latter doubles up pixels)
+
+R_DrawColumn:
+  - actual ASM (though not in the linux version)
+  - super simple lookup to get y addr (avoiding multiply) then DDA *foo = map[*bar]; foo += screenw; bar += step;
+
+
+
+
+----------------------------------------------------------
+
 * Wolf3d
   * Ray casting
     * like ray tracing, but one ray per pixel column
