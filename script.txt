@@ -1,0 +1,123 @@
+## Slide 1 - intro
+Wolfenstein 3D was one of those goes in the 90s that made you go "how on earth did they do that?". Somehow id software were able to get impressive 3D graphics out of machine with no apparent 3D capabilities. I'm Matt Godbolt, and in this video I'm going to explain how this was achieved.
+
+## Slide 2 - game shot
+This is what Wolfenstein looked like. It was 3D graphics alright, but admittedly simple ones. The game's premise had you escaping from a World War 2 prison, the eponymous Cast Wolfenstein. It was a great game, as well as being an awesome technical achievement.
+
+## Slide 3 - hardware
+In 1992 when Wolfenstein came out, the state of the art was a 16-bit 286 with no floating point unit. And this was before 3D graphics acceleration was available. The CPU had to write every pixel on the screen itself to render the next frame.
+
+## Slide 4 - raycasting
+How on earth was this possible? Wolfenstein used a technique called raycasting. 
+Raycasting draws the screen one pixel column at a time, by firing an imaginary ray from the player's position along the direction through that column, and seeing what it hits. Once we know what type of wall we've hit, and how far away it is, we can draw a scaled column of that wall in that pixel, before moving on to the next. 
+
+Raycasting is a simplified version of raytracing. Raytracing fires a ray for every pixel on the screen, whereas raycasting fires a ray for every pixel column. This drastically reduces the amount of tracing required, but does limit the types of things that can be drawn. Specifically, it's limited to standing on a flat plane and drawing only floors and simple walls. The environment itself is essentially two dimensional.
+
+I'll describe the raycasting process in detail over the next few minutes.
+
+## Slide 5 - wolf's raycaster
+Wolfenstein's raycasting renderer was limited to a flat plane, like all raycasters, but it had even more restrictions. The map it drew was made up of cells arranged on a square grid, so walls were always at 90 degrees from each other. Additionally, the floor and ceiling were untextured, just plain greys.
+
+## Slide 6 
+Here's an example of a map, as viewed from above. It's made up of square cells, each of which can be empty (the black cells), or can contain a wall or door. I've drawn walls in blue and doors in magenta.
+
+The player would be standing somewhere within one of the empty cells, facing a particular direction.
+
+We would image the screen as being some distance in front of the player, represented here as the small bright white line segment. We're looking down from above, so the 2d screen is just a line.
+
+# Slide 7 (map two)
+I'm showing the screen we're drawing on the right hand side, initialised with just plain floor and ceiling colours. For each x coordinate from left to right, we fire a ray down that direction. We work out what it hit, how far away that hit was, and draw a vertical column of pixels of the appropriate height for that distance, and texture for that type of wall. We then proceed to the next x coordinate and column, and so on until we've drawn the whole map.
+
+# Slide 8 (intersections)
+In order to trace each ray we need to be able to efficiently intersect rays with the walls in our map. Here's a zoomed-in version of the map.
+I'm going to trace the left hand column of the screen, the pixel at x coordinate zero. Here's the ray cast along this direction, and the point of intersection with the walls. We need to find the coordinates of this intersection.
+
+We also need to find the distance from the player, though not the straight-line distance you might expect. The distance we need is the distance to the point of intersection along the direction the player is facing, which I'll call 'p'. If we were to naively use the straight line distance from the player to the point of intersection we end up with a "fish-eye" effect.
+
+We're going to start tracing from the player's location along the ray direction, and we're going to stop every time we cross into a new map cell. We get into a new map cell each time our ray intersects with either the horizontal or vertical lines of the map grid.
+
+Our first point of intersection is with the horizontal grid line north of the player. I've marked the intersection point in yellow. We check the map data of that cell, and discover it's empty - so no intersection with a wall here.
+
+Continuing the trace we now intersect a vertical grid line, the one east of the player. This intersection I've marked in cyan. Again, the map data is empty, so we continue on, intersecting with horizontal and vertical lines until finally we find a map cell that isn't empty.
+
+Looking at the yellow intersection points with the horizontal grid lines, we note they are equally spaced in both x and y. Once we've found the initial intersection - the first yellow point - the following intersections are exactly one unit of y apart, and in x they are spaced along by an amount I'll call delta y. Similarly the vertical grid line intersections are spaced one unit in x, and delta x units in y. 
+
+# Slide 9 (math #1)
+How do we find these values? The first intersection point, and the delta to each subsequent point? Here's our player, and the ray. The player's position is at the map cell x y - x increases left to right, y increases top to bottom here. The player's fractional position, that is their position within the map cell, is dx and dy. With this ray point upwards and to the right, we know the distance to the point of intersection with the first horizontal grid line is minus dy units in y - that's just how far we have to travel to get to the y grid line. How far is it in X though?
+
+# Slide 10 (geometry)
+Recall from grade-school geometry the sines, cosines and tangents, and their relationship with the three lengths of a right-angled triangle. In Britain when I was growing up, we were taught this as 'soh cah toa', or "Silly Old Harry Caught A Haddock Trawling Off America". It tells us that given an angle, and one of the side lengths of a triangle, we can calculate the other length.
+
+# Slide 11 (Geometry 2)
+Looking at the ray in question, we can use trigonometry to determine the distance along x must be minus dy over tan theta.
+
+## Slide 12 (Math 2)
+Here's that shown on our map grid. This finds our first point of intersection. Subsequent points of intersection with the horizontal grid lines are one unit of y apart, and correspondingly one over tan theta units of x apart. So delta y is one over tan theta.
+
+Using similar reasoning, we find that the first intersection with a vertical grid line is dx units of x along, and minus dx tan theta units of y. Each subsequent intersection is minus tan theta units of y: delta x is minux tan theta.
+
+These values are all correct for a ray that's pointing along the north-east quadrant of the circle. For other directions, the x and y steps, and the delta x and delta y need to be appropriately negated.
+
+## Slide 13 for each ray
+Let's put this all together. I'm going to use names that correspond to the names in the Wolfenstein source code to make it a little easier if you want to follow along there. Given that theta is the direction of the ray, x and y are the player's tile position, dx and dy are the offsets within the tile:
+
+We look at theta, and depending on which quadrant it lies within we set tile step x and tile step y to the appropriate value, either one or minus one. This is the direction we must step in x to get to the next vertical intersection, and in y to get to the next horizontal intersection.
+
+We set x step and y step to the appropriately-signed tan theta and one over tan theta. These are the delta x and delta y values mentioned in the previous slides. Wolfenstein doesn't actually calculate tangents and reciprocal tangents at run-time. It uses tables to look up the values based on the theta value. It also doesn't use floating-point representations: all maths is done in fixed point here, with 16 bits of precision and 16 bits of integer value.
+
+Finally we find the first point of intersection: x intercept and y intercept. These are the current x tile position, plus the fractional amount with the tile dx, plus minus dy over tan theta, to find the x position at which the first horizontal grid line intersection occurs. And likewise the y intercept y plus dy, plus dx over tan theta, to find the y position of the first vertical grid line intersection.
+
+## Slide for each ray trace.
+
+Finally we can start tracing the ray. We are tracking two position: the position of the horizontal grid line intersections and the position of the vertical grid line intersection. We keep tracing either horizontal or vertical intersections until they "catch up" with the x or y position of the other type of intersection.  That's the comparison in the two while loops here. Note that the comparisons have to be either less-than or greater-than depending on the ray direction. Wolfenstein used self-modifying code to achieve this: depending on the quadrant of the ray, the opcodes for the branches in the while loops were switched for jump if less thatn or jump if greater than, as appropriate. Not a technique that's used much these days - for good reason.
+
+The first while loop is looking for interceptions with vertical walls. x is the integer map tile position of x, and y intercept is the fixed-point position along the y axis of the intersection. We check the map cell at x (which is a plain integer) and the integer part of the fixed point representation of yIntercept. If the map is non-zero, we hit a wall, and so go off to process the vertical hit. Else, we move x on appopriately (either adding one or subtracting one, depending on tileStepX), and move y intercept along by the y step. All in all, this while loop corresponds to around thirteen x86 instructions.
+
+Similarly, the second while loop looks for horizontal intersections, in pretty much the same way.
+
+We keep checking for horiontal and vertical intersections as appropriate until we eventually hit a wall. Wolfenstein always had closed environments and so this was guaranteed to eventually happen.
+
+## Slide for distance
+
+We've found our intersection point along this ray. We now need to know how far away it was. Recall we need the distance in the direction of the player's view, not the distance along the ray itself. I'll call this distance 'p'.
+
+The distance along the ray itself is 'd', and there's a relationship between 'd' and 'p': p is d cos phi, where phi is the angle between the ray and the player's direction. Of course, we haven't calculated the distance d.
+
+Let's take stock of the values we know. We know the direction the player is facing. I'll call the angle the player's direction makes with the horizontal, beta. We know the distance in x and y from the player's position to the point of intersection, which I'll call capital delta x and capital delta y. We know theta, the angle of the ray itself.
+
+We want to calculate p - we know it's d cos phi. From this image you can see that phi is the difference between theta - the ray direction - and beta - the player's direction.
+
+So p is d cos of theta minus beta. We don't know d yet, but could calculate it using Pythogoras's theory. d is the square root of capital delta x squared plus capital delta y squared. Square roots are incredibly expensive and don't lend themselves well to table lookups. Wolfenstein had a much more cunning approach.
+
+# Slide math 3
+Here's what we know so far. Now, again from grade-school remember the trigonometric identities. cos of a minus b is the same as cos a times cos b plus sin a time sin b. Like many maths tricks, this seems more complicatd than what we startd with, but bear with me!
+
+Substituting in for our p equation we get p equals d times, cos theta cos beta plus sin theta sin beta.
+
+Multiplying out, p is d cos theta cos beta plus d sin theta sin beta
+
+Now the magic happens.
+
+# Slide distance
+
+Taking a look once more at this diagram we see that we know theta, capital delta x and capital delta y. We also know there's a relationship between these, thanks to our sine and cosine knowlege. Capital delta x is d cos theta, and capital delta y in d sine theta.
+
+# Slide math 3 again
+Taking this knowledge and substituting capital delta X and capital delta Y give us this: p equals capital delta x cos beta plus capital delta y sin beta. We already know capital delta x and capital delta y - they're just the intersection x minus the player x and intersection y minus player y. 
+
+# Slide distance again
+
+Beta is the angle of the player's direction: cosine beta and sine beta can be looked up in a sine and cosine table once per frame. We can calculate p with two multiplies and an add - no square roots required!
+
+# Scaling
+Armed with our distance p, we can now work out how tall the wall would be at that distance. It's simply a constant divided by p. As there's only a finite number of possible heights, Wolfenstein code-generates one routine for every possible height. There's a "draw wall column scaled to 80 pixels high" routine, a "draw wall column scaled to 81 pixels high" routine and so on. Drawing the relevant height is as simple as calling the correct routine. Additionally, Wolfenstein uses a trick in the VGA hardware: pixels are written to memory-mapped video memory, but due to the way VGA works, multiple identical adjacent pixels can be written at once. Wolfenstein uses this to reduce the number of columns that need to be drawn.
+
+# Sprites
+This video has mostly been about the map renderer in Wolfenstein. The sprites - the movable characters and so on - are drawn in a similar manner. The sprites are sorted by distance from the player, drawn furthest-to-nearest and are scaled similarly to the walls. One finess for sprites is to support transparent pixels, and a pre-compilation stage looks for runs of opaque pixels in the sprites and only emits code to draw the opaque parts.
+
+# Conclusion
+Wolfenstein 3D really was a triumph of engineering. Some clever trigonetric tricks meant that even a 12MHz 286 could render a whole screenful of action packed shooter.
+
+This video was made possible by the fact that Wolfenstein's source code is now open source. Reading through the C and assembly code to find out how it worked was a lot of fun.
+
+I love to hear feedback, and if you have any comments on this video, or questions or corrections, please comment here or email or tweet me. If you've enjoyed this video, please like it, and for more content like this don't forget to subscribe.

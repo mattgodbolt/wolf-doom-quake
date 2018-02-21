@@ -73,7 +73,8 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
-            <h2>Wolfenstein 3D,<br>Doom & Quake</h2>
+            <!--<h2>Wolfenstein 3D,<br>Doom & Quake</h2>-->
+            <h2>Wolfenstein 3D</h2>
             <h3>Rendering feats of yesteryear</h3>
             <p>
                 <small><a href="http://xania.org">Matt Godbolt</a> / <a href="http://twitter.com/mattgodbolt">@mattgodbolt</a>
@@ -97,6 +98,10 @@
 
         <section>
             <h2>Raycasting</h2>
+            <img src="Simple_raycasting_with_fisheye_correction.gif">
+            <small><em>
+                By Kieff - Own work, Public Domain<br>https://commons.wikimedia.org/w/index.php?curid=20389654
+            </em></small>
         </section>
 
         <section>
@@ -125,8 +130,130 @@
 
                     <rect x="4" y="6" width="4" height="1" fill="#336"></rect>
                     <rect x="8" y="6" width="1" height="1" fill="#636"></rect>
+                    <g transform="translate(5,0)">
+                        <circle cx="1.25" cy="3.60" r="0.04" fill="#fff"></circle>
+                        <line x1="1.25" y1="3.60" x2="2.188" y2="3.225" stroke="#f33" stroke-width="0.02"
+                              marker-end="url(#arrow)"></line>
+                        <g class="fragment current-visible">
+                            <line x1="1.25" y1="3.60" x2="9.315" y2="4.051" stroke="#666" stroke-width="0.02"></line>
+                            <line x1="1.25" y1="3.60" x2="6.779" y2="-2.288" stroke="#666" stroke-width="0.02"></line>
+                            <line x1="1.895" y1="3.636" x2="1.692" y2="3.129" stroke="#fff" stroke-width="0.02"></line>
+                        </g>
+                    </g>
                 </g>
                 <rect width="100%" height="100%" fill="url(#grid-sm)"></rect>
+            </svg>
+        </section>
+        <section>
+            <h2>Map</h2>
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g transform="scale(37.5 37.5)">
+                    <rect x="0" y="0" width="10" height="1" fill="#336"></rect>
+                    <rect x="0" y="0" width="1" height="10" fill="#336"></rect>
+                    <rect x="0" y="9" width="10" height="1" fill="#336"></rect>
+                    <rect x="9" y="0" width="1" height="10" fill="#336"></rect>
+
+                    <rect x="0" y="3" width="3" height="1" fill="#336"></rect>
+                    <rect x="3" y="3" width="1" height="1" fill="#636"></rect>
+                    <rect x="4" y="1" width="1" height="5" fill="#336"></rect>
+                    <rect x="1" y="5" width="1" height="1" fill="#636"></rect>
+                    <rect x="2" y="5" width="2" height="1" fill="#336"></rect>
+
+                    <rect x="4" y="6" width="4" height="1" fill="#336"></rect>
+                    <rect x="8" y="6" width="1" height="1" fill="#636"></rect>
+                    <g transform="translate(5,0)">
+                        <circle cx="1.25" cy="3.60" r="0.04" fill="#fff"></circle>
+                        <line x1="1.25" y1="3.60" x2="2.188" y2="3.225" stroke="#f33" stroke-width="0.02"
+                              marker-end="url(#arrow)"></line>
+                        <g>
+                            <line x1="1.25" y1="3.60" x2="9.315" y2="4.051" stroke="#666" stroke-width="0.02"></line>
+                            <line x1="1.25" y1="3.60" x2="6.779" y2="-2.288" stroke="#666" stroke-width="0.02"></line>
+                            <line x1="1.895" y1="3.636" x2="1.692" y2="3.129" stroke="#fff" stroke-width="0.02"></line>
+                        </g>
+                        <g transform="translate(1.25,3.60)">
+                            <g class="fragment current-visible" data-fragment-index="1">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="2" transform="rotate(4.5454)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="3" transform="rotate(9.0909)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="4" transform="rotate(13.6366)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="5" transform="rotate(18.1818)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="6" transform="rotate(22.7272)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="7" transform="rotate(27.7272)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="8" transform="rotate(31.8181)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="9" transform="rotate(36.3636)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="10" transform="rotate(40.9090)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="11" transform="rotate(45.454545)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                            <g class="fragment current-visible" data-fragment-index="12" transform="rotate(50)">
+                                <line x1="0" y1="0" x2="1.3525" y2="-1.43" stroke="#fff" stroke-width="0.02"
+                                      marker-end="url(#arrow)"></line>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <rect width="100%" height="100%" fill="url(#grid-sm)"></rect>
+            </svg>
+            <svg width="300" height="240" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100%" height="50%" fill="#555"></rect>
+                <rect y="50%" width="100%" height="50%" fill="#333"></rect>
+                <g transform="scale(25,24)">
+                    <rect class="fragment" data-fragment-index="1" x="0" width="1" y="2.25" height="5.5"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="2" x="1" width="1" y="2.750" height="4.5"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="3" x="2" width="1" y="2.500" height="5"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="4" x="3" width="1" y="2.350" height="5.3"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="5" x="4" width="1" y="2.200" height="5.6"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="6" x="5" width="1" y="2.05" height="5.9"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="7" x="6" width="1" y="1.9" height="6.2"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="8" x="7" width="1" y="1.75" height="6.5"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="9" x="8" width="1" y="1.6" height="6.8"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="10" x="9" width="1" y="1.45" height="7.1"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="11" x="10" width="1" y="1.3" height="7.4"
+                          fill="#336"></rect>
+                    <rect class="fragment" data-fragment-index="12" x="11" width="1" y="1.15" height="7.7"
+                          fill="#336"></rect>
+                </g>
+                <rect width="100%" height="100%" stroke="#fff" fill="none"></rect>
             </svg>
         </section>
 
@@ -147,7 +274,7 @@
                         <circle cx="1.25" cy="3.60" r="0.04" fill="#fff"></circle>
                         <line x1="1.25" y1="3.60" x2="2.188" y2="3.225" stroke="#f33" stroke-width="0.02"
                               marker-end="url(#arrow)"></line>
-                        <g class="fragment current-visible">
+                        <g>
                             <line x1="1.25" y1="3.60" x2="9.315" y2="4.051" stroke="#666" stroke-width="0.02"></line>
                             <line x1="1.25" y1="3.60" x2="6.779" y2="-2.288" stroke="#666" stroke-width="0.02"></line>
                             <line x1="1.895" y1="3.636" x2="1.692" y2="3.129" stroke="#fff" stroke-width="0.02"></line>
@@ -330,7 +457,7 @@
                             <text x="0.625" y="1.7" text-anchor="middle" fill="white" font-size="0.11">dx</text>
                             <line x1="1.0" y1="1.6" x2="1.0" y2="0.804" stroke="#fff" stroke-width="0.01"
                                   marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
-                            <text x="1.02" y="1.2" text-anchor="start" fill="white" font-size="0.11">dx tan(&theta;)
+                            <text x="1.02" y="1.2" text-anchor="start" fill="white" font-size="0.11">-dx tan(&theta;)
                             </text>
                         </g>
                         <g class="fragment current-visible">
@@ -338,7 +465,7 @@
                             <line x1="0" y1="-0.256" x2="5" y2="-0.256" stroke="#0ff" stroke-width="0.01"></line>
                             <line x1="0.30" y1="0.804" x2="0.30" y2="-0.256" stroke="#fff" stroke-width="0.01"
                                   marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
-                            <text x="0.4" y="0.3" text-anchor="start" fill="white" font-size="0.1">&delta;x = tan(&theta;)</text>
+                            <text x="0.4" y="0.3" text-anchor="start" fill="white" font-size="0.1">&delta;x = -tan(&theta;)</text>
                         </g>
                     </g>
                 </g>
@@ -353,10 +480,10 @@
                 <li>Depending on &theta;:
                     <ul>
                         <li><code>tileStepX</code>, <code>tileStepY</code> = ±1</li>
-                        <li><code>xStep</code>, <code>yStep</code> = tan(&theta;'), 1/tan(&theta;') [&delta;x, &delta;y]
+                        <li><code>xStep</code>, <code>yStep</code> = tan(&theta;), 1/tan(&theta;) [&delta;x, &delta;y]
                         </li>
-                        <li><code>xIntercept</code> = x + dx + -dy / tan(&theta;')<br>
-                            <code>yIntercept</code> = y + dy + dx/tan(&theta;')
+                        <li><code>xIntercept</code> = x + dx + -dy / tan(&theta;)<br>
+                            <code>yIntercept</code> = y + dy + dx/tan(&theta;)
                         </li>
                     </ul>
                 </li>
@@ -366,13 +493,13 @@
             <h2>For each ray: trace</h2>
             <pre><code data-trim class="c">
 for (;;) {
-  while (yIntercept < y) {  // < or > depending on yStep
-    if (map[x][(int)yIntercept]) goto hitVert;
+  while (yIntercept < y) {  // &lt; or > depending on yStep
+    if (map[x][yIntercept>>16]) goto hitVert;
     x += tileStepX;
     yIntercept += yStep;
   }
-  while (xIntercept < x) {  // < or > depending on xStep
-    if (map[(int)xIntercept][y]) goto hitHoriz;
+  while (xIntercept < x) {  // &lt; or > depending on xStep
+    if (map[xIntercept>>16][y]) goto hitHoriz;
     y += tileStepY;
     xIntercept += xStep;
   }
@@ -456,7 +583,56 @@ for (;;) {
             <div class="fragment">cos(A - B) &equiv; cos(A) cos(B) + sin(A) sin(B)</div>
             <div class="fragment">p = d [ cos(&theta;) cos(&beta;) + sin(&theta;) sin(&beta;) ]</div>
             <div class="fragment">p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</div>
-            <div class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</div>
+        </section>
+        <section>
+            <h2>Distance</h2>
+            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                <g transform="scale(75 75)">
+                    <rect x="0" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="1" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="2" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="3" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="0" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="1" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="2" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="3" width="1" height="1" fill="#336"></rect>
+                    <rect x="4" y="4" width="1" height="1" fill="#336"></rect>
+                    <g>
+                        <circle cx="1.25" cy="3.60" r="0.04" fill="#fff"></circle>
+                        <line x1="1.25" y1="3.60" x2="2.188" y2="3.225" stroke="#f33" stroke-width="0.02"
+                              marker-end="url(#arrow)"></line>
+                        <line x1="1.25" y1="3.60" x2="3.709" y2="1.00" stroke="#fff" stroke-width="0.02"></line>
+                        <line x1="-0.041" y1="-8.380" x2="7.459" y2="10.380" stroke="#fff" stroke-width="0.02"></line>
+                        <path d="M2.50 3.60 A 1.25 1.25 1 0 0 2.109 2.692"
+                              fill="none" stroke="#fff" stroke-width="0.02"></path>
+                        <text x="2.4" y="2.9" fill="white" font-size="0.25">&theta;</text>
+                        <text x="2.5" y="2.0" fill="white" font-size="0.25">d</text>
+                    </g>
+                    <line x1="1.25" y1="3.60" x2="3.709" y2="3.60" stroke="#fff" stroke-width="0.02"
+                          marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                    <text x="2.48" y="3.9" fill="white" font-size="0.25">&Delta;x</text>
+                    <line x1="3.709" y1="3.60" x2="3.709" y2="1.0" stroke="#fff" stroke-width="0.02"
+                          marker-start="url(#white-arrow-begin)" marker-end="url(#white-arrow-end)"></line>
+                    <text x="3.8" y="2.3" fill="white" font-size="0.25">&Delta;y</text>
+                    <path d="M1.946 3.322 A 1.25 1.25 1 0 0 1.765 3.055" fill="none" stroke="#8ff"
+                          stroke-width="0.02"></path>
+                    <path d="M2.0 3.60 A 0.75 0.75 1 0 0 1.946 3.322" fill="none" stroke="#ff8"
+                          stroke-width="0.02"></path>
+                </g>
+                <rect width="100%" height="100%" fill="url(#grid)"></rect>
+            </svg>
+            <div style="margin-top: 20px;" class="fragment">&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)
+            </div>
+        </section>
+        <section>
+            <h2>Math #3</h2>
+            <div>p = d cos(&phi;)</div>
+            <div>&phi; = &theta; - &beta;</div>
+            <div>p = d cos(&theta; - &beta;)</div>
+            <div>cos(A - B) &equiv; cos(A) cos(B) + sin(A) sin(B)</div>
+            <div>p = d [ cos(&theta;) cos(&beta;) + sin(&theta;) sin(&beta;) ]</div>
+            <div>p = d cos(&theta;) cos(&beta;) + d sin(&theta;) sin(&beta;)</div>
+            <div>&Delta;x = d cos(&theta;)<br>&Delta;y = d sin(&theta;)</div>
             <div class="fragment" style="border: 2px solid white; padding: 2px; margin-top: 20px;">p = &Delta;x cos(&beta;)
                 + &Delta;y sin(&beta;)
             </div>
@@ -521,71 +697,76 @@ for (;;) {
                 <li>Sprites "compiled" into runs of opaque pixels</li>
             </ul>
         </section>
-
         <section><h3>Questions?</h3>
-            <h4><a href="http://wolf3d.atw.hu/">Obligatory Javascript link</a></h4></section>
+            <h4>matt@godbolt.org @mattgodbolt</h3>
+                <!-- <h5><a href="http://wolf3d.atw.hu/">Obligatory Javascript link</a></h4> -->
+        </section>
+        <!--
+                <section><h3>Questions?</h3>
+                    <h4><a href="http://wolf3d.atw.hu/">Obligatory Javascript link</a></h4></section>
 
-        <section>
-            <h2>Doom</h2>
-            <img src="Doom_ingame_1.png" height="240" width="320">
-        </section>
+                <section>
+                    <h2>Doom</h2>
+                    <img src="Doom_ingame_1.png" height="240" width="320">
+                </section>
 
-        <section>
-            <h2>Technology</h2>
-            TODO: specs of tech
-        </section>
+                <section>
+                    <h2>Technology</h2>
+                    TODO: specs of tech
+                </section>
 
-        <section>
-            <h2>Raycasting</h2>
-            <ul>
-                <li>But better!</li>
-                <li class="fragment">Arbitrary walls</li>
-                <li class="fragment">Wall/ceiling height changes</li>
-                <li class="fragment">Textured floors/ceilings</li>
-            </ul>
-        </section>
+                <section>
+                    <h2>Raycasting</h2>
+                    <ul>
+                        <li>But better!</li>
+                        <li class="fragment">Arbitrary walls</li>
+                        <li class="fragment">Wall/ceiling height changes</li>
+                        <li class="fragment">Textured floors/ceilings</li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Maps</h2>
-            <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <path d="
-                    M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
-                    L363 173 L307 322 L180 303 L231 230 L136 179 L90 204
-                    L132 261 L81 303 L14 247 L59 29" fill="none" stroke="#8ff"
-                          stroke-width="1.5"></path>
-                    <path class="fragment" d="
-                    M186 163 L166 196
-                    M209 174 L189 206
-                    M232 186 L212 218" fill="none" stroke="#f88"
-                          stroke-width="1.5"></path>
-                    <g class="fragment">
-                        <path d="
-                        M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
-                        L363 173 L307 322 L180 303 L231 230 L136 179 L90 204"
-                              fill="#488" opacity="0.3"></path>
-                    </g>
-                </g>
-                <rect width="100%" height="100%" fill="url(#grid)"></rect>
-            </svg>
-        </section>
-        <section>
-            <h2>Definitions</h2>
-            Linedefs
-            Sidedefs
-            Areas?
-        </section>
+                <section>
+                    <h2>Maps</h2>
+                    <svg width="376" height="376" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="
+                            M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
+                            L363 173 L307 322 L180 303 L231 230 L136 179 L90 204
+                            L132 261 L81 303 L14 247 L59 29" fill="none" stroke="#8ff"
+                                  stroke-width="1.5"></path>
+                            <path class="fragment" d="
+                            M186 163 L166 196
+                            M209 174 L189 206
+                            M232 186 L212 218" fill="none" stroke="#f88"
+                                  stroke-width="1.5"></path>
+                            <g class="fragment">
+                                <path d="
+                                M59 29 L181 41 L192 102 L158 150 L253 195 L303 124
+                                L363 173 L307 322 L180 303 L231 230 L136 179 L90 204"
+                                      fill="#488" opacity="0.3"></path>
+                            </g>
+                        </g>
+                        <rect width="100%" height="100%" fill="url(#grid)"></rect>
+                    </svg>
+                </section>
+                <section>
+                    <h2>Definitions</h2>
+                    Linedefs
+                    Sidedefs
+                    Areas?
+                </section>
 
-        <section>
-            <h2>BSP</h2>
-        </section>
+                <section>
+                    <h2>BSP</h2>
+                </section>
 
-        <section>
-            <h2>Rendering</h2>
-            ray cast to find walls
-            floors
-            sprites
-        </section>
+                <section>
+                    <h2>Rendering</h2>
+                    ray cast to find walls
+                    floors
+                    sprites
+                </section>
+        -->
     </div>
 
 </div>
@@ -603,31 +784,31 @@ for (;;) {
         history: true,
         center: true,
 
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
         dependencies: [
             {
                 src: 'lib/js/classList.js', condition: function () {
-                return !document.body.classList;
-            }
+                    return !document.body.classList;
+                }
             },
             {
                 src: 'plugin/markdown/marked.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/markdown/markdown.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                return !!document.querySelector('pre code');
-            }, callback: function () {
-                hljs.initHighlightingOnLoad();
-            }
+                    return !!document.querySelector('pre code');
+                }, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
             },
             {src: 'plugin/zoom-js/zoom.js', async: true},
             {src: 'plugin/notes/notes.js', async: true}
